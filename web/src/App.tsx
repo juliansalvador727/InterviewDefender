@@ -1,11 +1,33 @@
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import LoginWithGitHubButton from "./components/GithubLogin";
 const API = import.meta.env.VITE_API_BASE ?? "http://localhost:8000";
 
 export default function App() {
   const [token, setToken] = useState("");
   const [me, setMe] = useState<any>(null);
   const [err, setErr] = useState("");
+
+  useEffect(() => {
+    const url = new URL(window.location.href);
+
+    const tokenFromQuery = url.searchParams.get("token");
+    const tokenFromHash = new URLSearchParams(url.hash.replace(/^#/, "")).get(
+      "token",
+    );
+    const t = tokenFromQuery || tokenFromHash;
+
+    if (t) {
+      setToken(t);
+
+      // Clean URL so token isn’t left in the address bar/history
+      url.searchParams.delete("token");
+      history.replaceState(
+        {},
+        "",
+        url.pathname + url.search + url.hash.replace(/token=[^&]+&?/, ""),
+      );
+    }
+  }, []);
 
   async function devLogin() {
     setErr("");
@@ -44,6 +66,8 @@ export default function App() {
   return (
     <div style={{ padding: 24, fontFamily: "system-ui" }}>
       <h1>Interview Sim</h1>
+
+      <LoginWithGitHubButton apiBase={API} />
 
       <button onClick={devLogin}>Dev Login</button>
       <button onClick={loadMe} disabled={!token} style={{ marginLeft: 8 }}>
