@@ -13,7 +13,9 @@ RUN pip install --no-cache-dir \
   fastapi uvicorn[standard] \
   sqlalchemy[asyncio] asyncpg \
   alembic psycopg2-binary \
-  pydantic-settings python-jose[cryptography] httpx
+  pydantic-settings python-jose[cryptography] httpx \
+  PyJWT[crypto]
+
 
 EXPOSE 8000
 

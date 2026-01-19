@@ -1,41 +1,19 @@
 services:
-  db:
-    image: postgres:16
-    environment:
-      POSTGRES_USER: app
-      POSTGRES_PASSWORD: app
-      POSTGRES_DB: app
-    ports:
-      - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-
   api:
     build:
       context: ../api
-    environment:
-      # runtime async url
-      DATABASE_URL: postgresql+asyncpg://app:app@db:5432/app
-      # alembic sync url
-      ALEMBIC_DATABASE_URL: postgresql://app:app@db:5432/app
-
-      JWT_SECRET: dev-secret-change-me
-      FRONTEND_URL: http://localhost:5173
-    depends_on:
-      - db
+    env_file:
+      - ../api/.env
+    volumes:
+      - ../secrets/githubcode.pem:/run/secrets/githubcode.pem:ro
     ports:
       - "8000:8000"
 
   web:
     build:
       context: ../web
-    environment:
-      VITE_API_BASE: http://localhost:8000
-    depends_on:
-      - api
+    env_file:
+      - ../web/.env
     ports:
       - "5173:5173"
     command: sh -lc "npm install && npm run dev -- --host 0.0.0.0 --port 5173"
-
-volumes:
-  pgdata:

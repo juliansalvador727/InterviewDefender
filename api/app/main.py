@@ -7,6 +7,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.api.routes import health, auth, me
 
+from app.api.routes.github_app import router as github_app_router
+
+
 from app.core.db import get_db
 
 FRONTEND_URL = settings.FRONTEND_URL
@@ -29,6 +32,8 @@ app.add_middleware(
 app.include_router(health.router, prefix="/api/v1")
 app.include_router(auth.router, prefix="/api/v1")
 app.include_router(me.router, prefix="/api/v1")
+app.include_router(github_app_router, prefix="/api/v1")
+
 def _get_github_config():
     client_id = settings.GITHUB_CLIENT_ID
     client_secret = settings.GITHUB_CLIENT_SECRET

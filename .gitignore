@@ -70,3 +70,6 @@ coverage.xml
 *.tmp
 *.swp
 *.swo
+
+
+/secrets

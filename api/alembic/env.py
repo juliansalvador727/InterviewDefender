@@ -32,6 +32,12 @@ target_metadata = Base.metadata
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 
+def _get_url() -> str:
+    return (
+        os.getenv("ALEMBIC_DATABASE_URL")
+        or os.getenv("DATABASE_URL")
+        or config.get_main_option("sqlalchemy.url")
+    )
 
 def run_migrations_offline() -> None:
     """Run migrations in 'offline' mode.
@@ -45,13 +51,14 @@ def run_migrations_offline() -> None:
     script output.
 
     """
-    url = os.getenv("ALEMBIC_DATABASE_URL") or config.get_main_option("sqlalchemy.url")
+    url = _get_url()
     context.configure(
         url=url,
         target_metadata=target_metadata,
         literal_binds=True,
         dialect_opts={"paramstyle": "named"},
     )
+
 
     with context.begin_transaction():
         context.run_migrations()
@@ -65,9 +72,10 @@ def run_migrations_online() -> None:
 
     """
     connectable = create_engine(
-    os.getenv("ALEMBIC_DATABASE_URL") or config.get_main_option("sqlalchemy.url"),
+    _get_url(),
     poolclass=pool.NullPool,
 )
+
 
     with connectable.connect() as connection:
         context.configure(
