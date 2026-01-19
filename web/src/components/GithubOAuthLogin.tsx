@@ -1,40 +1,17 @@
 /**
- * GithubAppConnect - GitHub App installation component
- * Used for connecting the GitHub App to access repositories
- * Requires user to be already authenticated
- * Endpoint: /api/v1/github/app/start
+ * GithubOAuthLogin - OAuth authentication component
+ * Used for user authentication via GitHub OAuth
+ * Scope: read:user, user:email
+ * Endpoint: /auth/github/login
  */
-interface GithubAppConnectProps {
-  apiBase: string;
-  onConnect?: () => void | Promise<void>;
-}
-
-export default function GithubAppConnect({
-  apiBase,
-  onConnect,
-}: GithubAppConnectProps) {
-  async function handleConnect() {
-    try {
-      const res = await fetch(`${apiBase}/api/v1/github/app/start`, {
-        method: "POST",
-        credentials: "include",
-      });
-      if (!res.ok) throw new Error(await res.text());
-      const data = await res.json();
-      
-      if (onConnect) {
-        await onConnect();
-      }
-      
-      window.location.href = data.install_url;
-    } catch (error) {
-      console.error("Failed to start GitHub App connection:", error);
-    }
+export default function GithubOAuthLogin({ apiBase }: { apiBase: string }) {
+  function login() {
+    window.location.href = `${apiBase}/auth/github/login`;
   }
 
   return (
     <button
-      onClick={() => void handleConnect()}
+      onClick={login}
       className="group relative inline-flex items-center justify-center gap-3 rounded-lg bg-neutral-900 px-6 py-3 text-[15px] font-medium text-white shadow-sm transition-all hover:bg-neutral-800 active:scale-[0.98]"
     >
       <svg
@@ -49,7 +26,7 @@ export default function GithubAppConnect({
           clipRule="evenodd"
         />
       </svg>
-      <span>Connect GitHub App</span>
+      <span>Continue with GitHub</span>
     </button>
   );
 }
