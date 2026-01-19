@@ -39,16 +39,13 @@ export default function GithubAppConnect({
     <Button
       onClick={() => void handleConnect()}
       size="lg"
-      className="group relative text-[15px] font-semibold"
+      className="group relative overflow-hidden"
     >
-      {/* Glow effect */}
-      <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-amber-400 to-orange-500 opacity-0 group-hover:opacity-20 blur-xl transition-opacity" />
+      <Github className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+      <span>Connect GitHub App</span>
       
-      <Github className="h-5 w-5 relative z-10 group-hover:rotate-12 transition-transform duration-300" />
-      <span className="relative z-10">Connect GitHub App</span>
-      
-      {/* Animated pulse ring */}
-      <div className="absolute inset-0 rounded-lg border-2 border-white/20 opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" />
+      {/* Shimmer effect */}
+      <div className="absolute inset-0 shimmer pointer-events-none" />
     </Button>
   );
 }

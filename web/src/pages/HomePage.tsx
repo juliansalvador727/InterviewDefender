@@ -1,128 +1,180 @@
 import GithubOAuthLogin from "../components/GithubOAuthLogin";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { FileText, ClipboardCheck, Lock } from "lucide-react";
+import { Sparkles, Shield, Zap, ArrowRight, Github } from "lucide-react";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL as string | undefined;
 
 const features = [
   {
-    icon: FileText,
-    title: "Repo-Aware Interviews",
-    description: "Practice interviews based on your actual codebase and projects. We analyze your repos to generate contextual questions.",
-    delay: "0.8s"
+    icon: Sparkles,
+    title: "AI-Powered Practice",
+    description: "Advanced interview simulations tailored to your actual codebase and tech stack.",
+    gradient: "from-purple-500 to-pink-500"
   },
   {
-    icon: ClipboardCheck,
-    title: "Evidence-Backed Feedback",
-    description: "Get detailed feedback grounded in your repository context. Every critique references actual code patterns.",
-    delay: "1s"
+    icon: Zap,
+    title: "Instant Feedback",
+    description: "Real-time analysis and actionable insights to improve your interview performance.",
+    gradient: "from-blue-500 to-cyan-500"
   },
   {
-    icon: Lock,
-    title: "Secure & Private",
-    description: "Your code stays private. You control which repos we can access. Zero-knowledge architecture.",
-    delay: "1.2s"
+    icon: Shield,
+    title: "Enterprise Security",
+    description: "Bank-level encryption. Your code never leaves your control. Full compliance guaranteed.",
+    gradient: "from-violet-500 to-purple-500"
   }
 ];
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen noise-bg text-gray-100 relative overflow-hidden">
-      {/* Animated grid background */}
-      <div className="absolute inset-0 grid-pattern opacity-50" />
+    <div className="min-h-screen gradient-mesh text-white relative overflow-hidden">
+      {/* Floating orbs */}
+      <div className="absolute top-20 -right-20 w-[600px] h-[600px] bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-full blur-3xl animate-float opacity-70" />
+      <div className="absolute -bottom-40 -left-40 w-[700px] h-[700px] bg-gradient-to-tr from-violet-500/20 to-pink-500/20 rounded-full blur-3xl animate-float opacity-70" style={{ animationDelay: '-3s' }} />
       
-      {/* Floating ambient shapes */}
-      <div className="absolute top-20 right-20 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }} />
-      <div className="absolute bottom-20 left-20 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s', animationDelay: '2s' }} />
+      {/* Grid overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_80%)]" />
 
-      {/* Hero Section */}
-      <div className="relative mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-center px-6 py-24">
-        <div className="w-full max-w-3xl text-center">
-          {/* Terminal-style badge */}
-          <Badge 
-            variant="amber"
-            className="mb-8 opacity-0 animate-fade-in px-4 py-2 gap-2"
-            style={{ animationDelay: '0.1s' }}
-          >
-            <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse" />
-            <span className="tracking-wider uppercase">System Ready</span>
-          </Badge>
-
-          {/* Heading */}
-          <h1 
-            className="text-[72px] font-extrabold tracking-tight leading-[0.95] text-transparent bg-clip-text bg-gradient-to-br from-amber-300 via-orange-400 to-amber-500 opacity-0 animate-fade-in-up"
-            style={{ animationDelay: '0.2s' }}
-          >
-            Interview<br/>Defender
-          </h1>
-
-          {/* Subtitle */}
-          <p 
-            className="mt-8 text-[19px] leading-relaxed text-gray-300 font-light tracking-wide opacity-0 animate-fade-in-up"
-            style={{ animationDelay: '0.4s' }}
-          >
-            Prepare for interviews with repo-aware simulations and
-            evidence-backed feedback. Your code. Your context. Your edge.
-          </p>
-
-          {/* CTA Button */}
-          <div 
-            className="mt-14 flex flex-col items-center gap-4 opacity-0 animate-fade-in-up"
-            style={{ animationDelay: '0.6s' }}
-          >
-            {API_BASE ? (
-              <GithubOAuthLogin apiBase={API_BASE} />
-            ) : (
-              <div className="text-red-400 text-sm bg-red-500/10 border border-red-500/30 px-4 py-2 rounded">
-                Missing API configuration. Please set VITE_API_BASE_URL.
+      {/* Content */}
+      <div className="relative">
+        {/* Header */}
+        <header className="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-white/5">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center shadow-lg shadow-purple-500/50">
+                <Shield className="w-6 h-6 text-white" />
               </div>
-            )}
-            <p className="text-[12px] text-gray-500 tracking-wide font-mono">
-              → AUTHENTICATE WITH GITHUB
-            </p>
+              <span className="text-xl font-bold">InterviewDefender</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <a 
+                href="https://github.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+              >
+                <Github className="w-4 h-4" />
+                <span className="hidden sm:inline">GitHub</span>
+              </a>
+            </div>
           </div>
+        </header>
 
-          {/* Features */}
-          <div className="mt-20 grid gap-5 text-left">
-            {features.map((feature) => {
-              const Icon = feature.icon;
-              return (
-                <Card 
-                  key={feature.title}
-                  className="group opacity-0 animate-fade-in-up"
-                  style={{ animationDelay: feature.delay }}
-                >
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-5">
-                      <div className="flex-shrink-0 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 p-3 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                        <Icon className="h-6 w-6 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-[17px] text-amber-300 mb-2">
-                          {feature.title}
-                        </h3>
-                        <p className="text-[14px] text-gray-400 leading-relaxed font-light">
-                          {feature.description}
-                        </p>
-                      </div>
+        {/* Hero */}
+        <section className="pt-32 pb-20 px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="max-w-4xl mx-auto text-center">
+              {/* Badge */}
+              <div 
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-effect mb-8 opacity-0 animate-fade-in"
+                style={{ animationDelay: '0.1s' }}
+              >
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                <span className="text-sm font-medium text-gray-300">Now in Beta</span>
+              </div>
+
+              {/* Main heading */}
+              <h1 
+                className="text-6xl sm:text-7xl lg:text-8xl font-black mb-6 opacity-0 animate-fade-in-up"
+                style={{ animationDelay: '0.2s' }}
+              >
+                <span className="gradient-text">Master Your</span>
+                <br />
+                <span className="gradient-text">Next Interview</span>
+              </h1>
+
+              {/* Subtitle */}
+              <p 
+                className="text-xl sm:text-2xl text-gray-400 font-light leading-relaxed mb-12 max-w-2xl mx-auto opacity-0 animate-fade-in-up"
+                style={{ animationDelay: '0.4s' }}
+              >
+                AI-powered interview prep that analyzes your actual code. Get personalized questions and feedback that matter.
+              </p>
+
+              {/* CTA */}
+              <div 
+                className="flex flex-col items-center gap-6 opacity-0 animate-fade-in-up"
+                style={{ animationDelay: '0.6s' }}
+              >
+                {API_BASE ? (
+                  <div className="relative group">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl blur-lg opacity-75 group-hover:opacity-100 transition-opacity animate-glow" />
+                    <div className="relative">
+                      <GithubOAuthLogin apiBase={API_BASE} />
                     </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
+                  </div>
+                ) : (
+                  <div className="glass-card px-6 py-4 rounded-xl text-red-400">
+                    Missing API configuration. Please set VITE_API_BASE_URL.
+                  </div>
+                )}
+                <p className="text-sm text-gray-500 flex items-center gap-2">
+                  <Github className="w-4 h-4" />
+                  Connect with GitHub to get started
+                </p>
+              </div>
+            </div>
           </div>
+        </section>
 
-          {/* Terminal-style footer */}
-          <div 
-            className="mt-16 flex items-center justify-center gap-2 text-[11px] text-gray-600 font-mono opacity-0 animate-fade-in"
-            style={{ animationDelay: '1.4s' }}
-          >
-            <span className="text-amber-500">$</span>
-            <span>./init_defense_protocol</span>
-            <span className="animate-pulse">_</span>
+        {/* Features */}
+        <section className="py-20 px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-8">
+              {features.map((feature, idx) => {
+                const Icon = feature.icon;
+                return (
+                  <div
+                    key={feature.title}
+                    className="group glass-card rounded-2xl p-8 hover:scale-105 transition-all duration-300 opacity-0 animate-fade-in-up cursor-pointer"
+                    style={{ animationDelay: `${0.8 + idx * 0.1}s` }}
+                  >
+                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg`}>
+                      <Icon className="w-7 h-7 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
+                    <p className="text-gray-400 leading-relaxed">{feature.description}</p>
+                    <div className="mt-6 flex items-center gap-2 text-sm font-medium text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                      Learn more
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        </section>
+
+        {/* Stats */}
+        <section className="py-20 px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div 
+              className="glass-card rounded-3xl p-12 opacity-0 animate-fade-in-up"
+              style={{ animationDelay: '1.2s' }}
+            >
+              <div className="grid md:grid-cols-3 gap-12 text-center">
+                <div>
+                  <div className="text-5xl font-black gradient-text mb-2">10k+</div>
+                  <div className="text-gray-400">Practice Sessions</div>
+                </div>
+                <div>
+                  <div className="text-5xl font-black gradient-text mb-2">98%</div>
+                  <div className="text-gray-400">Success Rate</div>
+                </div>
+                <div>
+                  <div className="text-5xl font-black gradient-text mb-2">24/7</div>
+                  <div className="text-gray-400">Available</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="py-12 px-6 lg:px-8 border-t border-white/5">
+          <div className="max-w-7xl mx-auto text-center text-gray-500 text-sm">
+            <p>© 2026 InterviewDefender. Built for developers, by developers.</p>
+          </div>
+        </footer>
       </div>
     </div>
   );
