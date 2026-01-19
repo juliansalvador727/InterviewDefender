@@ -15,7 +15,7 @@ from app.models.user import User
 # IMPORTANT: reuse your existing auth dependency.
 # This should return the current User from your JWT.
 # If yours is named differently, swap it here.
-from app.api.routes.me import get_current_user  # adjust if needed
+from app.api.deps import get_current_user
 
 router = APIRouter(prefix="/github/app", tags=["github-app"])
 

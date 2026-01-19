@@ -1,4 +1,4 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import ConfigDict
 
 
@@ -8,7 +8,9 @@ class Settings(BaseSettings):
         env_file_encoding="utf-8",
         extra="ignore",  # ignore env vars you don't model
     )
-
+    ENV: str = "dev"
+    COOKIE_SECURE: bool = False
+    
     # Database
     DATABASE_URL: str
     ALEMBIC_DATABASE_URL: str | None = None
@@ -26,10 +28,16 @@ class Settings(BaseSettings):
     GITHUB_APP_SLUG: str
     GITHUB_APP_PRIVATE_KEY_PATH: str
 
+
     # Optional (not used by your current github_app.py)
     GITHUB_APP_CLIENT_ID: str | None = None
     GITHUB_APP_CLIENT_SECRET: str | None = None
     GITHUB_APP_CALLBACK_URL: str | None = None
+    
+    GITHUB_CLIENT_ID: str | None = None
+    GITHUB_CLIENT_SECRET: str | None = None
+    GITHUB_REDIRECT_URI: str | None = None
+
 
 
 settings = Settings()
