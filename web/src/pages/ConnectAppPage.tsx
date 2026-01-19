@@ -1,5 +1,6 @@
 import GithubAppConnect from "../components/GithubLogin";
-import { CheckCircle2, Circle, Shield, ArrowRight, Github } from "lucide-react";
+import Navbar from "../components/Navbar";
+import { CheckCircle2, Circle, ArrowRight, Github } from "lucide-react";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL as string | undefined;
 
@@ -22,28 +23,25 @@ export default function ConnectAppPage() {
       <div className="absolute top-20 right-10 w-[600px] h-[600px] bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-full blur-3xl animate-float opacity-70" />
       <div className="absolute bottom-20 left-10 w-[500px] h-[500px] bg-gradient-to-tr from-violet-500/20 to-pink-500/20 rounded-full blur-3xl animate-float opacity-70" style={{ animationDelay: '-3s' }} />
 
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center shadow-lg shadow-purple-500/50">
-              <Shield className="w-6 h-6 text-white" />
-            </div>
-            <span className="text-xl font-bold">InterviewDefender</span>
-          </div>
+      {/* Navbar */}
+      <Navbar variant="fixed" />
+      
+      {/* Status Bar */}
+      <div className="fixed top-[73px] left-0 right-0 z-40 glass-effect border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-center">
           <div className="px-3 py-1.5 rounded-full glass-effect flex items-center gap-2">
             <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
             <span className="text-xs font-medium text-gray-300">Setup Required</span>
           </div>
         </div>
-      </header>
+      </div>
 
       {/* Main Content */}
-      <div className="relative pt-32 pb-20 px-6 lg:px-8">
+      <div className="relative pt-40 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Progress Steps */}
           <div 
-            className="flex items-center justify-center gap-4 mb-16 opacity-0 animate-fade-in"
+            className="flex items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-16 opacity-0 animate-fade-in"
             style={{ animationDelay: '0.1s' }}
           >
             {/* Step 1 - Complete */}
@@ -78,15 +76,15 @@ export default function ConnectAppPage() {
           </div>
 
           {/* Main Content Card */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-10 sm:mb-12 px-4">
             <h1 
-              className="text-5xl sm:text-6xl font-black mb-6 opacity-0 animate-fade-in-up"
+              className="text-4xl sm:text-5xl lg:text-6xl font-black mb-4 sm:mb-6 opacity-0 animate-fade-in-up"
               style={{ animationDelay: '0.3s' }}
             >
               <span className="gradient-text">Connect GitHub App</span>
             </h1>
             <p 
-              className="text-xl text-gray-400 max-w-2xl mx-auto opacity-0 animate-fade-in-up"
+              className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto opacity-0 animate-fade-in-up"
               style={{ animationDelay: '0.5s' }}
             >
               Grant InterviewDefender access to your repositories to unlock personalized interview preparation.
@@ -95,7 +93,7 @@ export default function ConnectAppPage() {
 
           {/* CTA */}
           <div 
-            className="flex flex-col items-center gap-6 mb-16 opacity-0 animate-fade-in-up"
+            className="flex flex-col items-center gap-6 mb-12 sm:mb-16 opacity-0 animate-fade-in-up"
             style={{ animationDelay: '0.7s' }}
           >
             {API_BASE ? (
@@ -117,30 +115,30 @@ export default function ConnectAppPage() {
           </div>
 
           {/* Info Cards */}
-          <div className="grid md:grid-cols-2 gap-6 mb-12">
+          <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-10 sm:mb-12">
             {/* What's Different */}
             <div 
-              className="glass-card rounded-2xl p-8 opacity-0 animate-fade-in-up"
+              className="glass-card rounded-2xl p-6 sm:p-8 opacity-0 animate-fade-in-up"
               style={{ animationDelay: '0.9s' }}
             >
-              <h3 className="text-xl font-bold mb-6">What's the difference?</h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
+              <h3 className="text-lg sm:text-xl font-bold mb-5 sm:mb-6">What's the difference?</h3>
+              <div className="space-y-3 sm:space-y-4">
+                <div className="flex items-start gap-3 sm:gap-4">
                   <div className="w-8 h-8 rounded-lg bg-green-500/20 border border-green-500/40 flex items-center justify-center flex-shrink-0">
                     <CheckCircle2 className="w-4 h-4 text-green-400" strokeWidth={3} />
                   </div>
                   <div>
-                    <div className="font-semibold text-sm mb-1">OAuth Login</div>
-                    <div className="text-sm text-gray-400">Authenticates your identity with GitHub</div>
+                    <div className="font-semibold text-sm sm:text-base mb-1">OAuth Login</div>
+                    <div className="text-xs sm:text-sm text-gray-400">Authenticates your identity with GitHub</div>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-3 sm:gap-4">
                   <div className="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-500/40 flex items-center justify-center flex-shrink-0">
                     <ArrowRight className="w-4 h-4 text-purple-400" />
                   </div>
                   <div>
-                    <div className="font-semibold text-sm mb-1">GitHub App</div>
-                    <div className="text-sm text-gray-400">Grants access to specific repositories for AI analysis</div>
+                    <div className="font-semibold text-sm sm:text-base mb-1">GitHub App</div>
+                    <div className="text-xs sm:text-sm text-gray-400">Grants access to specific repositories for AI analysis</div>
                   </div>
                 </div>
               </div>
@@ -148,17 +146,17 @@ export default function ConnectAppPage() {
 
             {/* What Happens Next */}
             <div 
-              className="glass-card rounded-2xl p-8 opacity-0 animate-fade-in-up"
+              className="glass-card rounded-2xl p-6 sm:p-8 opacity-0 animate-fade-in-up"
               style={{ animationDelay: '1.1s' }}
             >
-              <h3 className="text-xl font-bold mb-6">What happens next?</h3>
-              <div className="space-y-4">
+              <h3 className="text-lg sm:text-xl font-bold mb-5 sm:mb-6">What happens next?</h3>
+              <div className="space-y-3 sm:space-y-4">
                 {steps.map((step, idx) => (
-                  <div key={idx} className="flex items-start gap-4 group">
+                  <div key={idx} className="flex items-start gap-3 sm:gap-4 group">
                     <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-purple-500/20 group-hover:border-purple-500/40 transition-colors">
                       <span className="text-sm font-bold text-gray-400 group-hover:text-purple-400">{idx + 1}</span>
                     </div>
-                    <div className="text-sm text-gray-400 pt-1.5">{step}</div>
+                    <div className="text-xs sm:text-sm text-gray-400 pt-1.5">{step}</div>
                   </div>
                 ))}
               </div>
@@ -167,10 +165,10 @@ export default function ConnectAppPage() {
 
           {/* Footer Note */}
           <div 
-            className="text-center opacity-0 animate-fade-in"
+            className="text-center px-4 opacity-0 animate-fade-in"
             style={{ animationDelay: '1.3s' }}
           >
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 max-w-2xl mx-auto">
               Your code and data remain private and secure. We only request read access to generate relevant interview questions.
             </p>
           </div>

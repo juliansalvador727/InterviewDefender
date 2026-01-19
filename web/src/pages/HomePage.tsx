@@ -1,4 +1,5 @@
 import GithubOAuthLogin from "../components/GithubOAuthLogin";
+import Navbar from "../components/Navbar";
 import { Sparkles, Shield, Zap, ArrowRight, Github } from "lucide-react";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL as string | undefined;
@@ -36,36 +37,16 @@ export default function HomePage() {
 
       {/* Content */}
       <div className="relative">
-        {/* Header */}
-        <header className="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-white/5">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center shadow-lg shadow-purple-500/50">
-                <Shield className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-bold">InterviewDefender</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <a 
-                href="https://github.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-2"
-              >
-                <Github className="w-4 h-4" />
-                <span className="hidden sm:inline">GitHub</span>
-              </a>
-            </div>
-          </div>
-        </header>
+        {/* Navbar */}
+        <Navbar variant="fixed" />
 
         {/* Hero */}
-        <section className="pt-32 pb-20 px-6 lg:px-8">
+        <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="max-w-4xl mx-auto text-center">
               {/* Badge */}
               <div 
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-effect mb-8 opacity-0 animate-fade-in"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-effect mb-6 sm:mb-8 opacity-0 animate-fade-in"
                 style={{ animationDelay: '0.1s' }}
               >
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
@@ -74,7 +55,7 @@ export default function HomePage() {
 
               {/* Main heading */}
               <h1 
-                className="text-6xl sm:text-7xl lg:text-8xl font-black mb-6 opacity-0 animate-fade-in-up"
+                className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black mb-5 sm:mb-6 opacity-0 animate-fade-in-up px-4"
                 style={{ animationDelay: '0.2s' }}
               >
                 <span className="gradient-text">Master Your</span>
@@ -84,7 +65,7 @@ export default function HomePage() {
 
               {/* Subtitle */}
               <p 
-                className="text-xl sm:text-2xl text-gray-400 font-light leading-relaxed mb-12 max-w-2xl mx-auto opacity-0 animate-fade-in-up"
+                className="text-lg sm:text-xl lg:text-2xl text-gray-400 font-light leading-relaxed mb-10 sm:mb-12 max-w-2xl mx-auto opacity-0 animate-fade-in-up px-4"
                 style={{ animationDelay: '0.4s' }}
               >
                 AI-powered interview prep that analyzes your actual code. Get personalized questions and feedback that matter.
@@ -117,23 +98,23 @@ export default function HomePage() {
         </section>
 
         {/* Features */}
-        <section className="py-20 px-6 lg:px-8">
+        <section className="py-24 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
               {features.map((feature, idx) => {
                 const Icon = feature.icon;
                 return (
                   <div
                     key={feature.title}
-                    className="group glass-card rounded-2xl p-8 hover:scale-105 transition-all duration-300 opacity-0 animate-fade-in-up cursor-pointer"
+                    className="group glass-card rounded-2xl p-6 sm:p-8 hover:scale-105 transition-all duration-300 opacity-0 animate-fade-in-up cursor-pointer"
                     style={{ animationDelay: `${0.8 + idx * 0.1}s` }}
                   >
-                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg`}>
+                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-5 sm:mb-6 group-hover:scale-110 transition-transform shadow-lg`}>
                       <Icon className="w-7 h-7 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
-                    <p className="text-gray-400 leading-relaxed">{feature.description}</p>
-                    <div className="mt-6 flex items-center gap-2 text-sm font-medium text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">{feature.title}</h3>
+                    <p className="text-gray-400 leading-relaxed text-sm sm:text-base">{feature.description}</p>
+                    <div className="mt-5 sm:mt-6 flex items-center gap-2 text-sm font-medium text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity">
                       Learn more
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </div>
@@ -145,24 +126,24 @@ export default function HomePage() {
         </section>
 
         {/* Stats */}
-        <section className="py-20 px-6 lg:px-8">
+        <section className="py-24 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div 
-              className="glass-card rounded-3xl p-12 opacity-0 animate-fade-in-up"
+              className="glass-card rounded-3xl p-8 sm:p-12 lg:p-16 opacity-0 animate-fade-in-up"
               style={{ animationDelay: '1.2s' }}
             >
-              <div className="grid md:grid-cols-3 gap-12 text-center">
-                <div>
-                  <div className="text-5xl font-black gradient-text mb-2">10k+</div>
-                  <div className="text-gray-400">Practice Sessions</div>
+              <div className="grid md:grid-cols-3 gap-8 sm:gap-12 text-center">
+                <div className="py-4">
+                  <div className="text-4xl sm:text-5xl font-black gradient-text mb-2 sm:mb-3">10k+</div>
+                  <div className="text-sm sm:text-base text-gray-400">Practice Sessions</div>
                 </div>
-                <div>
-                  <div className="text-5xl font-black gradient-text mb-2">98%</div>
-                  <div className="text-gray-400">Success Rate</div>
+                <div className="py-4">
+                  <div className="text-4xl sm:text-5xl font-black gradient-text mb-2 sm:mb-3">98%</div>
+                  <div className="text-sm sm:text-base text-gray-400">Success Rate</div>
                 </div>
-                <div>
-                  <div className="text-5xl font-black gradient-text mb-2">24/7</div>
-                  <div className="text-gray-400">Available</div>
+                <div className="py-4">
+                  <div className="text-4xl sm:text-5xl font-black gradient-text mb-2 sm:mb-3">24/7</div>
+                  <div className="text-sm sm:text-base text-gray-400">Available</div>
                 </div>
               </div>
             </div>
@@ -170,7 +151,7 @@ export default function HomePage() {
         </section>
 
         {/* Footer */}
-        <footer className="py-12 px-6 lg:px-8 border-t border-white/5">
+        <footer className="mt-12 py-16 px-4 sm:px-6 lg:px-8 border-t border-white/5">
           <div className="max-w-7xl mx-auto text-center text-gray-500 text-sm">
             <p>© 2026 InterviewDefender. Built for developers, by developers.</p>
           </div>
