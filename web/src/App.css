@@ -1,5 +1,3 @@
-/* Notion-inspired global styles */
-
 * {
   box-sizing: border-box;
 }
@@ -9,42 +7,67 @@
   min-height: 100vh;
 }
 
-/* Notion-like selection */
 ::selection {
-  background-color: rgba(45, 170, 219, 0.3);
+  background-color: rgba(245, 158, 11, 0.4);
+  color: #fff;
 }
 
 ::-moz-selection {
-  background-color: rgba(45, 170, 219, 0.3);
+  background-color: rgba(245, 158, 11, 0.4);
+  color: #fff;
 }
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar (Notion-like) */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--bg-secondary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
+  background: var(--accent-primary);
+  border-radius: 5px;
+  border: 2px solid var(--bg-secondary);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.25);
+  background: var(--accent-secondary);
 }
 
-/* Focus styles */
 button:focus-visible,
 a:focus-visible {
-  outline: 2px solid rgba(0, 0, 0, 0.5);
+  outline: 2px solid var(--accent-primary);
   outline-offset: 2px;
+}
+
+/* Grid pattern overlay */
+.grid-pattern {
+  background-image: 
+    linear-gradient(rgba(245, 158, 11, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 158, 11, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Glowing border effect */
+.glow-border {
+  position: relative;
+}
+
+.glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.6;
 }
